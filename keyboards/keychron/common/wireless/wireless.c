@@ -569,9 +569,15 @@ void send_string_task(void) {
 #endif
     }
 }
+
 wt_state_t wireless_get_state(void) {
     return wireless_state;
-};
+}
+
+/* Get the current connected host index */
+uint8_t wireless_get_current_host(void) {
+    return host_index;
+}
 
 bool process_record_wireless(uint16_t keycode, keyrecord_t *record) {
     if (get_transport() & TRANSPORT_WIRELESS) {
