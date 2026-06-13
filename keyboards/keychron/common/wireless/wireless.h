@@ -97,10 +97,10 @@ void wireless_post_task(void);
 void send_string_task(void);
 
 wt_state_t wireless_get_state(void);
+uint8_t wireless_get_current_host(void);
 
 void wireless_low_battery_shutdown(void);
 
 bool process_record_wireless(uint16_t keycode, keyrecord_t *record);
 
 void wireless_raw_hid_rx(uint8_t *data, uint8_t length);
-
