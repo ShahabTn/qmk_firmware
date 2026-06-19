@@ -31,6 +31,7 @@ enum custom_keycodes {
 
     KC_SAVE_TAP, // Custom multi-tap save keycode
     KC_JIGGLER,  // Toggles the mouse jiggler feature
+    KC_Hello,    // Custom string macro keycode
 };
 
 typedef struct {
@@ -209,7 +210,7 @@ static void trigger_tab_r_macro(bool is_mac) {
 const uint16_t PROGMEM keymaps[4][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_tkl_iso(
         QK_GESC,  KC_BRID,  KC_BRIU,  TASK_VIEW, _______, RGB_VAD,  RGB_VAI,  _______,  _______,  BT_HST1,  BT_HST2,  BT_HST3,  KC_DEL,    KC_MUTE,    TM_SNAP,  TM_SIRI,  TM_RGBMOD,
-        TV_DRAW,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,    S(G(KC_4)),   LALT(KC_R),  DT_PGUP,
+        TV_DRAW,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,    _______,   LALT(KC_R),  DT_PGUP,
         KC_TAB,   KC_Q,     KC_W,     KC_E,     MOD_R_TAP, KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,                KC_SAVE_TAP, _______,   DT_PGDN,
         KC_CAPS,  KC_A,     KC_S,     KC_D,     MOD_F_TAP, KC_G,    MOD_H_TAP, MOD_J_TAP, KC_K,     KC_L,     KC_SCLN,  KC_QUOT,  KC_NUHS,    KC_ENT,
         KC_LSFT,  KC_NUBS,  KC_Z,     KC_X,     MOD_C_TAP, MOD_V_TAP, KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,              KC_UP,
@@ -225,17 +226,17 @@ const uint16_t PROGMEM keymaps[4][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WIN_BASE] = LAYOUT_tkl_iso(
         QK_GESC,  KC_BRID,  KC_BRIU,  TASK_VIEW, _______,  RGB_VAD,  RGB_VAI,  _______,  _______,  BT_HST1,  BT_HST2,  BT_HST3,  KC_DEL,    KC_MUTE,    TM_SNAP,  TM_SIRI,  TM_RGBMOD,
-        TV_DRAW,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,    S(G(KC_S)),   LALT(KC_R),  DT_PGUP,
-        KC_TAB,   KC_Q,     KC_W,     KC_E,     MOD_R_TAP, KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,                KC_SAVE_TAP, _______,   DT_PGDN,
+        TV_DRAW,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,     KC_BSPC,    G(S(KC_T)),   LALT(KC_R),  DT_PGUP,
+        KC_TAB,   KC_Q,     KC_W,     KC_E,     MOD_R_TAP, KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,                KC_SAVE_TAP, KC_Hello,   DT_PGDN,
         KC_CAPS,  KC_A,     MOD_S_TAP, KC_D,    MOD_F_TAP, KC_G,    MOD_H_TAP, MOD_J_TAP, KC_K,     MOD_L_TAP, KC_SCLN,  KC_QUOT,  KC_NUHS,    KC_ENT,
         KC_LSFT,  KC_NUBS,  KC_Z,     KC_X,     MOD_C_TAP, MOD_V_TAP, KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,              KC_RSFT,              KC_UP,
         KC_LCTL,  KC_LWIN,  ALT_OPT_R,                             KC_SPC,                                 KC_RALT,  KC_RWIN,  MO(WIN_FN), KC_RCTL,    KC_LEFT,  KC_DOWN,  KC_RGHT),
 
     [WIN_FN] = LAYOUT_tkl_iso(
-        QK_BOOT,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,    _______,  _______,  _______,
+        QK_BOOT,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_6,  KC_F7,  KC_F8,  KC_F9,  KC_F10,  KC_F11,  KC_F12,    _______,    _______,  _______,  _______,
         KC_GRV,  BT_HST1,  BT_HST2,  BT_HST3,  P2P4G,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    _______,    _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    KC_JIGGLER, // <--- Replaced KC_ENT with KC_JIGGLER
+        _______,  S(KC_RIGHT),  S(KC_LEFT),  S(KC_UP),  S(KC_DOWN),  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,    KC_JIGGLER, 
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,              _______,              _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,    _______,    _______,  _______,  _______),
 };
@@ -320,6 +321,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+        case KC_Hello:
+            if (record->event.pressed) {
+                SEND_STRING("914415415");
+                wait_ms(100);
+                tap_code(KC_ENT);
+            }
+            return false;
+
         case KC_JIGGLER:
             if (record->event.pressed) {
                 jiggler_active = !jiggler_active;
@@ -362,7 +371,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
 
-        case MOD_F_TAP:
+            case MOD_F_TAP:
             if (record->event.pressed) { mod_timers[T_F] = timer_read(); mod_interrupted[T_F] = false; }
             else {
                 if (!mod_interrupted[T_F]) {
@@ -510,6 +519,10 @@ void matrix_scan_user(void) {
     if (jiggler_active && timer_elapsed32(jiggler_timer) >= 10000) {
         jiggler_timer = timer_read32();
         
+        // Reset the keyboard's internal activity tracking to block deep sleep
+        extern void indicator_reset_backlit_time(void);
+        indicator_reset_backlit_time();
+        
         report_mouse_t mouse_report = {0};
         
         switch (jiggler_step) {
@@ -547,9 +560,6 @@ void matrix_scan_user(void) {
 
 bool rgb_matrix_indicators_user(void) {
     // ===== BLUETOOTH DEVICE INDICATOR LEDs (HIGHEST PRIORITY) =====
-    // LED1 (Blue) when connected to Mac (BT1 = host_index 1)
-    // LED2 (Blue) when connected to Windows (BT2 = host_index 2)
-    // Always-on indicator - independent from layers
     if (wireless_get_current_host() == 1) {
         rgb_matrix_set_color(9, 0, 100, 255);      // Blue for Mac
         rgb_matrix_set_color(10, 0, 0, 0);         // Off
@@ -597,17 +607,13 @@ bool rgb_matrix_indicators_user(void) {
         uint16_t v_elapsed = timer_elapsed(mod_v_press_time);
 
         if (v_elapsed < 300) {
-            // 0ms - 300ms: NO INDICATOR
             return true;
-
         } else if (v_elapsed < 1000) {
-            // 300ms - 1000ms: YELLOW INDICATOR
             rgb_matrix_set_color(13, 255, 255, 0);
             rgb_matrix_set_color(14, 255, 255, 0);
             rgb_matrix_set_color(15, 255, 255, 0);
             return true;
         } else {
-            // > 1000ms: BLUE INDICATOR
             rgb_matrix_set_color(13, 0, 100, 255);
             rgb_matrix_set_color(14, 0, 100, 255);
             rgb_matrix_set_color(15, 0, 100, 255);
@@ -620,17 +626,13 @@ bool rgb_matrix_indicators_user(void) {
         uint16_t s_elapsed = timer_elapsed(mod_s_press_time);
 
         if (s_elapsed < 300) {
-            // 0ms - 300ms: NO INDICATOR
             return true;
-
         } else if (s_elapsed < 1000) {
-            // 300ms - 1000ms: YELLOW INDICATOR
             rgb_matrix_set_color(13, 255, 255, 0);
             rgb_matrix_set_color(14, 255, 255, 0);
             rgb_matrix_set_color(15, 255, 255, 0);
             return true;
         } else {
-            // > 1000ms: BLUE INDICATOR
             rgb_matrix_set_color(13, 0, 100, 255);
             rgb_matrix_set_color(14, 0, 100, 255);
             rgb_matrix_set_color(15, 0, 100, 255);
@@ -643,7 +645,6 @@ bool rgb_matrix_indicators_user(void) {
         uint16_t c_elapsed = timer_elapsed(mod_c_press_time);
 
         if (c_elapsed >= MY_LONG_HOLD_TERM) {
-            // >= 1000ms: BLUE INDICATOR
             rgb_matrix_set_color(13, 0, 100, 255);
             rgb_matrix_set_color(14, 0, 100, 255);
             rgb_matrix_set_color(15, 0, 100, 255);
@@ -657,7 +658,6 @@ bool rgb_matrix_indicators_user(void) {
         uint16_t l_elapsed = timer_elapsed(mod_l_press_time);
 
         if (l_elapsed >= MY_LONG_HOLD_TERM) {
-            // >= 1000ms: BLUE INDICATOR
             rgb_matrix_set_color(13, 0, 100, 255);
             rgb_matrix_set_color(14, 0, 100, 255);
             rgb_matrix_set_color(15, 0, 100, 255);
@@ -667,7 +667,6 @@ bool rgb_matrix_indicators_user(void) {
     }
 
     // ----- MOUSE JIGGLER BLINKING INDICATOR -----
-    // If the jiggler is active, blink the Caps Lock LED (50) fast blue
     if (jiggler_active) {
         if ((timer_read32() % 200) < 100) {
             rgb_matrix_set_color(50, 0, 100, 255); // Fast blue blink on
@@ -675,7 +674,6 @@ bool rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color(50, 0, 0, 0);     // Fast blue blink off
         }
     } else if (caps_on) {
-        // Fallback to normal steady red if Caps Lock is actually on and jiggler is off
         rgb_matrix_set_color(50, 255, 0, 0);
     }
 
@@ -689,7 +687,6 @@ bool rgb_matrix_indicators_user(void) {
         }
     }
 
-    // Keep existing fallback behavior for LEDs 13-15 (when no timeframe indicator is active)
     if (caps_on) {
         rgb_matrix_set_color(13, 255, 0, 0);
         rgb_matrix_set_color(14, 255, 0, 0);
@@ -703,7 +700,7 @@ bool rgb_matrix_indicators_user(void) {
     }
 
     if (drawing_mode) {
-        if ((timer_read32() % 500) < 300) {
+        if ((timer_read32() % 250) < 150) {
             rgb_matrix_set_color(13, 255, 0, 0);
         } else {
             rgb_matrix_set_color(13, 0, 0, 0);
